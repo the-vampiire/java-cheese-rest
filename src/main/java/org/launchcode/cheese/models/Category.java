@@ -1,6 +1,5 @@
 package org.launchcode.cheese.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,24 +8,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "categories")
 @EqualsAndHashCode
-@Table(name = "cheeses")
-public class Cheese {
+public class Category {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
   private String name;
 
-  private String description;
-
-  @ManyToOne(optional = false)
-  private Category category;
+  // fetch = LAZY means when you grab this Entity (Category) DO NOT grab all cheeses
+  // fetch = EAGER means when you grab this Entity (Category) DO grab all cheeses too
+  // DEFAULT = LAZY
+  @OneToMany(mappedBy = "category")
+  private Set<Cheese> cheeses;
 }
+
