@@ -1,5 +1,6 @@
 package org.launchcode.cheese.controllers;
 
+import org.launchcode.cheese.models.Category;
 import org.launchcode.cheese.models.Cheese;
 import org.launchcode.cheese.models.DTOs.CheeseDTO;
 import org.launchcode.cheese.services.CheeseService;
@@ -39,6 +40,7 @@ public class CheeseController {
     if (errors.hasErrors()) {
       return ResponseEntity.badRequest().body("bad stuff");
     }
+
     try {
       Cheese cheese = cheeseService.createCheese(cheeseDTO);
       return ResponseEntity.ok(cheese);
@@ -47,7 +49,7 @@ public class CheeseController {
     // -- RESPONSIBILITIES OF CONTROLLER BELOW --//
       // should be using creationError.getMessage() not defining own error message
       // Controller shouldnt be coupled to the detail of creation business
-      return ResponseEntity.badRequest().body("Category not found");
+      return ResponseEntity.badRequest().body(creationError.getMessage());
     }
   }
 

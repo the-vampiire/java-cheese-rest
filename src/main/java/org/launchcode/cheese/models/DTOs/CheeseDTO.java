@@ -1,7 +1,9 @@
 package org.launchcode.cheese.models.DTOs;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.launchcode.cheese.models.Category;
 import org.launchcode.cheese.models.Cheese;
 
 import javax.validation.constraints.Min;
@@ -24,4 +26,6 @@ public class CheeseDTO extends NameAndDescriptionEntityDTO implements Convertibl
 
     return cheese;
   }
+
+
 }

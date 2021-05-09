@@ -6,10 +6,12 @@ import org.launchcode.cheese.models.DTOs.CheeseDTO;
 import org.launchcode.cheese.repositories.CategoryRepository;
 import org.launchcode.cheese.repositories.CheeseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@Service
 public class CheeseService {
   @Autowired
   // express our need for dependencies during construction
